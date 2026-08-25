@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>+Aula | Aprender conectado</title>
+<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <a class="brand" href="#"><span>+</span>Aula</a>
+  <div class="profile-mini"><div class="avatar small">J</div><div><b>Prof. Lucas</b><small>Professor</small></div></div>
+  <nav>
+    <button class="nav active" data-page="dashboard"><i>⌂</i><span>Início</span></button>
+    <button class="nav" data-page="turmas"><i>▣</i><span>Minhas turmas</span></button>
+    <button class="nav" data-page="atividades"><i>▤</i><span>Atividades</span></button>
+    <button class="nav" data-page="entregas"><i>✓</i><span>Entregas</span></button>
+    <button class="nav" data-page="usuarios"><i>◉</i><span>Usuários</span></button>
+    <button class="nav" data-page="dashboard"><i>▥</i><span>Relatórios</span></button>
+  </nav>
+  <div class="sidebar-bottom"><button class="nav"><i>⚙</i><span>Configurações</span></button><button class="nav"><i>⇥</i><span>Sair</span></button></div>
+</aside>
+
+<main class="content">
+<header class="topbar"><div><h1 id="title">Olá, Julia! <span>👋</span></h1><p id="subtitle">Vamos ter um ótimo dia de aprendizado.</p></div><div class="top-actions"><button class="icon-btn">♧<b></b></button><div class="avatar">J</div></div></header>
+
+<section id="dashboard" class="page active">
+ <div class="dashboard-grid top-grid">
+  <div class="panel upcoming"><div class="panel-title"><h2>Próximas aulas</h2><a href="#" onclick="openPage('turmas');return false">Ver todas</a></div><div id="classes-list" class="schedule-list"></div></div>
+  <div class="panel pending"><div class="panel-title"><h2>Atividades pendentes</h2><a href="#" onclick="openPage('atividades');return false">Ver todas</a></div><div id="activities-list" class="activity-list"></div></div>
+  <div class="panel notices"><div class="panel-title"><h2>Avisos recentes</h2></div><div class="notice"><span class="bubble orange">▤</span><div><b>Prova de Matemática</b><small>Sexta-feira, 08:00</small></div></div><div class="notice"><span class="bubble blue">▣</span><div><b>Trabalho em grupo</b><small>Novo grupo criado</small></div></div><div class="notice"><span class="bubble purple">✎</span><div><b>Reunião de Pais</b><small>Quinta-feira, 19:00</small></div></div></div>
+ </div>
+ <div class="dashboard-grid bottom-grid">
+  <div class="panel performance"><div class="panel-title"><div><h2>Seu desempenho</h2><small>Média geral</small></div><span class="more">⋮</span></div><div class="performance-body"><div><strong id="performance-score">8,7</strong><em>↑ 0,5 este mês</em></div><div class="chart"><span style="height:18%"></span><span style="height:30%"></span><span style="height:24%"></span><span style="height:46%"></span><span style="height:42%"></span><span style="height:65%"></span><span style="height:58%"></span><span style="height:82%"></span></div></div></div>
+  <div class="panel recent"><div class="panel-title"><h2>Entregas recentes</h2><a href="#" onclick="openPage('entregas');return false">Ver todas</a></div><div id="recent-deliveries"></div></div>
+  <div class="panel messages"><div class="panel-title"><h2>Mensagens recentes</h2><a href="#">Ver todas</a></div><div class="message"><div class="avatar tiny">L</div><div><b>Prof. Lucas (Matemática)</b><small>Sobre a atividade de hoje ✍️</small></div><time>09:12</time></div><div class="message"><div class="avatar tiny green">A</div><div><b>Ana Clara (Turma 2B)</b><small>Você já terminou o resumo?</small></div><time>Ontem</time></div><div class="message"><span class="bubble purple">♙</span><div><b>Coordenação</b><small>Lembrete: reunião de pais.</small></div><time>Ontem</time></div></div>
+ </div>
+ <div class="stats-row" id="summary"></div>
+</section>
+
+<section id="turmas" class="page resource-page"><div class="resource-head"><div><span class="eyebrow">GESTÃO ACADÊMICA</span><h2>Minhas turmas</h2><p>Organize suas turmas e acompanhe os alunos.</p></div><button class="primary" onclick="openForm('turmas')">＋ Nova turma</button></div><div class="class-cards" id="turmas-cards"></div><div class="panel table-panel" id="turmas-table"></div></section>
+<section id="atividades" class="page resource-page"><div class="resource-head"><div><span class="eyebrow">PLANEJAMENTO</span><h2>Atividades</h2><p>Crie, edite e acompanhe as atividades das turmas.</p></div><button class="primary" onclick="openForm('atividades')">＋ Nova atividade</button></div><div class="panel table-panel" id="atividades-table"></div></section>
+<section id="entregas" class="page resource-page"><div class="resource-head"><div><span class="eyebrow">ACOMPANHAMENTO</span><h2>Entregas</h2><p>Visualize o andamento e o status das atividades.</p></div><button class="primary" onclick="openForm('entregas')">＋ Nova entrega</button></div><div class="panel table-panel" id="entregas-table"></div></section>
+<section id="usuarios" class="page resource-page"><div class="resource-head"><div><span class="eyebrow">COMUNIDADE</span><h2>Usuários</h2><p>Gerencie os usuários cadastrados na plataforma.</p></div><button class="primary" onclick="openForm('usuarios')">＋ Novo usuário</button></div><div class="panel table-panel" id="usuarios-table"></div></section>
+</main></div>
+
+<div id="modal" class="modal hidden"><form class="modal-box" id="form"><div class="modal-head"><div><span class="eyebrow">CADASTRO</span><h3 id="modal-title"></h3></div><button type="button" class="close" onclick="closeModal()">×</button></div><div id="fields"></div><div class="form-actions"><button type="button" class="secondary" onclick="closeModal()">Cancelar</button><button class="primary">Salvar alterações</button></div></form></div>
+<div id="toast"></div><script src="/static/js/app.js"></script>
+</body></html>
