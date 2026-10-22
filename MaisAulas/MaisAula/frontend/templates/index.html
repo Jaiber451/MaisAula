@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   +Aula | Gest&atilde;o escolar
+  </title>
+  <link href="/static/css/styles.css?v=5" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="app-shell">
+   <aside class="sidebar">
+    <a class="brand" href="#">
+     <span>
+      +
+     </span>
+     Aula
+    </a>
+    <div class="profile-mini">
+     <div class="avatar small">
+      J
+     </div>
+     <div>
+      <b>
+       Prof. Julia
+      </b>
+      <small>
+       Gestora
+      </small>
+     </div>
+    </div>
+    <nav>
+     <button class="nav active" data-page="dashboard">
+      <i>
+       ⌂
+      </i>
+      <span>
+       In&iacute;cio
+      </span>
+     </button>
+     <button class="nav" data-page="turmas">
+      <i>
+       ▣
+      </i>
+      <span>
+       Minhas turmas
+      </span>
+     </button>
+     <button class="nav" data-page="atividades">
+      <i>
+       ▤
+      </i>
+      <span>
+       Atividades
+      </span>
+     </button>
+     <button class="nav" data-page="entregas">
+      <i>
+       &checkmark;
+      </i>
+      <span>
+       Entregas
+      </span>
+     </button>
+     <button class="nav" data-page="usuarios">
+      <i>
+       ◉
+      </i>
+      <span>
+       Usu&aacute;rios
+      </span>
+     </button>
+     <button class="nav" data-page="relatorios">
+      <i>
+       ▥
+      </i>
+      <span>
+       Relat&oacute;rios
+      </span>
+     </button>
+    </nav>
+    <div class="sidebar-bottom">
+     <button class="nav" data-page="configuracoes">
+      <i>
+       ⚙
+      </i>
+      <span>
+       Configura&ccedil;&otilde;es
+      </span>
+     </button>
+     <button class="nav" id="exit-button">
+      <i>
+       &rarrb;
+      </i>
+      <span>
+       Sair
+      </span>
+     </button>
+    </div>
+   </aside>
+   <main class="content">
+    <header class="topbar">
+     <div>
+      <h1 id="title">
+       Ol&aacute;, Julia!
+       <span>
+       </span>
+      </h1>
+      <p id="subtitle">
+       Tudo pronto para organizar seu dia de aprendizado.
+      </p>
+     </div>
+     <div class="top-actions">
+      <button class="icon-btn" id="refresh-button" title="Atualizar dados">
+       &orarr;
+      </button>
+      <div class="avatar">
+       J
+      </div>
+     </div>
+    </header>
+    <section class="page active" id="dashboard">
+     <div class="dashboard-grid top-grid">
+      <div class="panel upcoming dashboard-link" data-page="turmas" role="button" tabindex="0">
+       <div class="panel-title">
+        <h2>
+         Pr&oacute;ximas turmas
+        </h2>
+        <a href="#" onclick="openPage('turmas');return false">
+         Ver todas
+        </a>
+       </div>
+       <div class="schedule-list" id="classes-list">
+       </div>
+      </div>
+      <div class="panel pending dashboard-link" data-page="atividades" role="button" tabindex="0">
+       <div class="panel-title">
+        <h2>
+         Pr&oacute;ximas atividades
+        </h2>
+        <a href="#" onclick="openPage('atividades');return false">
+         Ver todas
+        </a>
+       </div>
+       <div class="activity-list" id="activities-list">
+       </div>
+      </div>
+      <div class="panel notices dashboard-link" data-page="usuarios" role="button" tabindex="0">
+       <div class="panel-title">
+        <h2>
+         Resumo r&aacute;pido
+        </h2>
+       </div>
+       <div class="notice">
+        <span class="bubble orange">
+         ▤
+        </span>
+        <div>
+         <b>
+          Gest&atilde;o completa
+         </b>
+         <small>
+          Cadastre turmas e atividades
+         </small>
+        </div>
+       </div>
+       <div class="notice">
+        <span class="bubble blue">
+         &checkmark;
+        </span>
+        <div>
+         <b>
+          Acompanhe entregas
+         </b>
+         <small>
+          Status e notas em tempo real
+         </small>
+        </div>
+       </div>
+       <div class="notice">
+        <span class="bubble purple">
+         ◉
+        </span>
+        <div>
+         <b>
+          Usu&aacute;rios
+         </b>
+         <small>
+          Gerencie os respons&aacute;veis
+         </small>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="dashboard-grid bottom-grid">
+      <div class="panel performance dashboard-link" data-page="relatorios" role="button" tabindex="0">
+       <div class="panel-title">
+        <div>
+         <h2>
+          Desempenho geral
+         </h2>
+         <small>
+          M&eacute;dia das notas registradas
+         </small>
+        </div>
+       </div>
+       <div class="performance-body">
+        <div>
+         <strong id="performance-score">
+          &mdash;
+         </strong>
+         <em id="performance-label">
+          Aguardando entregas avaliadas
+         </em>
+        </div>
+        <div class="chart" id="performance-chart">
+        </div>
+       </div>
+      </div>
+      <div class="panel recent dashboard-link" data-page="entregas" role="button" tabindex="0">
+       <div class="panel-title">
+        <h2>
+         Entregas recentes
+        </h2>
+        <a href="#" onclick="openPage('entregas');return false">
+         Ver todas
+        </a>
+       </div>
+       <div id="recent-deliveries">
+       </div>
+      </div>
+      <div class="panel messages">
+       <div class="panel-title">
+        <h2>
+         A&ccedil;&otilde;es r&aacute;pidas
+        </h2>
+       </div>
+       <div class="quick-actions">
+        <button onclick="openForm('usuarios')">
+         ＋ Novo usu&aacute;rio
+        </button>
+        <button onclick="openForm('turmas')">
+         ＋ Nova turma
+        </button>
+        <button onclick="openForm('atividades')">
+         ＋ Nova atividade
+        </button>
+        <button onclick="openForm('entregas')">
+         ＋ Registrar entrega
+        </button>
+       </div>
+      </div>
+     </div>
+     <div class="stats-row" id="summary">
+     </div>
+    </section>
+    <section class="page resource-page" id="turmas">
+     <div class="resource-head">
+      <div>
+       <span class="eyebrow">
+        GEST&Atilde;O ACAD&Ecirc;MICA
+       </span>
+       <h2>
+        Minhas turmas
+       </h2>
+       <p>
+        Organize turmas, respons&aacute;veis e descri&ccedil;&otilde;es.
+       </p>
+      </div>
+      <button class="primary" onclick="openForm('turmas')">
+       ＋ Nova turma
+      </button>
+     </div>
+     <div class="filters">
+      <select id="turmas-responsavel">
+       <option value="">
+        Todos os respons&aacute;veis
+       </option>
+      </select>
+      <button class="secondary" onclick="clearFilters('turmas')">
+       Limpar
+      </button>
+     </div>
+     <div class="class-cards" id="turmas-cards">
+     </div>
+     <div class="panel table-panel" id="turmas-table">
+     </div>
+    </section>
+    <section class="page resource-page" id="atividades">
+     <div class="resource-head">
+      <div>
+       <span class="eyebrow">
+        PLANEJAMENTO
+       </span>
+       <h2>
+        Atividades
+       </h2>
+       <p>
+        Crie, edite e acompanhe as atividades das turmas.
+       </p>
+      </div>
+      <button class="primary" onclick="openForm('atividades')">
+       ＋ Nova atividade
+      </button>
+     </div>
+     <div class="filters">
+      <div class="date-range">
+       <label>
+        De
+        <input id="atividades-data-inicio" type="date"/>
+       </label>
+       <label>
+        At&eacute;
+        <input id="atividades-data-fim" type="date"/>
+       </label>
+      </div>
+      <button class="secondary" onclick="clearFilters('atividades')">
+       Limpar
+      </button>
+     </div>
+     <div class="panel table-panel" id="atividades-table">
+     </div>
+    </section>
+    <section class="page resource-page" id="entregas">
+     <div class="resource-head">
+      <div>
+       <span class="eyebrow">
+        ACOMPANHAMENTO
+       </span>
+       <h2>
+        Entregas
+       </h2>
+       <p>
+        Registre status, data e nota das atividades.
+       </p>
+      </div>
+      <button class="primary" onclick="openForm('entregas')">
+       ＋ Nova entrega
+      </button>
+     </div>
+     <div class="filters">
+      <select id="entregas-status">
+       <option value="">
+        Todos os status
+       </option>
+       <option>
+        Pendente
+       </option>
+       <option>
+        Entregue
+       </option>
+       <option>
+        Atrasada
+       </option>
+      </select>
+      <div class="date-range">
+       <label>
+        De
+        <input id="entregas-data-inicio" type="date"/>
+       </label>
+       <label>
+        At&eacute;
+        <input id="entregas-data-fim" type="date"/>
+       </label>
+      </div>
+      <button class="secondary" onclick="clearFilters('entregas')">
+       Limpar
+      </button>
+     </div>
+     <div class="panel table-panel" id="entregas-table">
+     </div>
+    </section>
+    <section class="page resource-page" id="usuarios">
+     <div class="resource-head">
+      <div>
+       <span class="eyebrow">
+        COMUNIDADE
+       </span>
+       <h2>
+        Usu&aacute;rios
+       </h2>
+       <p>
+        Gerencie os usu&aacute;rios cadastrados na plataforma.
+       </p>
+      </div>
+      <button class="primary" onclick="openForm('usuarios')">
+       ＋ Novo usu&aacute;rio
+      </button>
+     </div>
+     <div class="filters">
+      <input id="usuarios-nome" placeholder="Buscar por nome" type="search"/>
+      <button class="secondary" onclick="clearFilters('usuarios')">
+       Limpar
+      </button>
+     </div>
+     <div class="panel table-panel" id="usuarios-table">
+     </div>
+    </section>
+    <section class="page resource-page" id="relatorios">
+     <div class="resource-head">
+      <div>
+       <span class="eyebrow">
+        AN&Aacute;LISE
+       </span>
+       <h2>
+        Relat&oacute;rios
+       </h2>
+       <p>
+        Visualize os indicadores atuais da plataforma.
+       </p>
+      </div>
+      <button class="primary" id="print-report">
+       Imprimir relat&oacute;rio
+      </button>
+     </div>
+     <div class="filters">
+      <select id="relatorios-atividade">
+       <option value="">
+        Todas as atividades
+       </option>
+      </select>
+      <button class="secondary" onclick="clearFilters('relatorios')">
+       Limpar
+      </button>
+     </div>
+     <div class="stats-row" id="report-cards">
+     </div>
+     <div class="panel table-panel">
+      <h3>
+       Desempenho por entrega
+      </h3>
+      <div id="report-table">
+      </div>
+     </div>
+    </section>
+    <section class="page resource-page" id="configuracoes">
+     <div class="resource-head">
+      <div>
+       <span class="eyebrow">
+        PREFER&Ecirc;NCIAS
+       </span>
+       <h2>
+        Configura&ccedil;&otilde;es
+       </h2>
+       <p>
+        Personalize informa&ccedil;&otilde;es exibidas nesta instala&ccedil;&atilde;o.
+       </p>
+      </div>
+     </div>
+     <div class="panel settings">
+      <div class="field">
+       <label>
+        Nome exibido
+       </label>
+       <input id="display-name" placeholder="Ex.: Julia"/>
+      </div>
+      <div class="field">
+       <label>
+        Mensagem de boas-vindas
+       </label>
+       <input id="welcome-message" placeholder="Vamos ter um &oacute;timo dia de aprendizado."/>
+      </div>
+      <div class="form-actions">
+       <button class="primary" id="save-settings">
+        Salvar configura&ccedil;&otilde;es
+       </button>
+      </div>
+     </div>
+    </section>
+   </main>
+  </div>
+  <div class="modal hidden" id="modal">
+   <form class="modal-box" id="form">
+    <div class="modal-head">
+     <div>
+      <span class="eyebrow">
+       CADASTRO
+      </span>
+      <h3 id="modal-title">
+      </h3>
+     </div>
+     <button class="close" onclick="closeModal()" type="button">
+      &times;
+     </button>
+    </div>
+    <div id="fields">
+    </div>
+    <div class="form-actions">
+     <button class="secondary" onclick="closeModal()" type="button">
+      Cancelar
+     </button>
+     <button class="primary">
+      Salvar
+     </button>
+    </div>
+   </form>
+  </div>
+  <div id="toast">
+  </div>
+  <script src="/static/js/app.js?v=5">
+  </script>
+ </body>
+</html>
